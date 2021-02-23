@@ -38,7 +38,7 @@
         var: c
 
 - name: Pulling Required K8S Images For Master Node
-  command: kubeadm config images pull
+  shell: kubeadm config images pull
   register: d
 - debug:
         var: d
@@ -74,7 +74,7 @@
         var: g
 
 - name: restarting sysctl
-  command: sysctl --system
+  shell: sysctl --system
   register: h
 - debug:
         var: h
@@ -95,7 +95,7 @@
         var: j
 
 - name: Copying Config File of K8S Master to HOME Location
-  command: "cp -i /etc/kubernetes/admin.conf $HOME/.kube/config"
+  shell: "cp -i /etc/kubernetes/admin.conf $HOME/.kube/config"
   register: k
 - debug:
         var: k
@@ -107,7 +107,7 @@
         var: l
 
 - name: setup overlay network using flannel plugin
-  command: "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml"
+  shell: "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml"
   register: m
 - debug:
         var: m
